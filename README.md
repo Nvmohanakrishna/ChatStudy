@@ -1,4 +1,11 @@
+
 # Ex. No:1b 			Study of Client Server Chat Applications
+
+
+
+## REGISTER NUMBER : 212224100039
+## DEVOLOPED BY: N V Mohana krishna
+
 
 ## Aim: 
 To perform a study on Client Server Chat Applications
@@ -73,8 +80,72 @@ Client-server chat applications are versatile tools that facilitate real-time co
 
 Client-server chat applications are foundational to real-time communication over networks. They incorporate principles of socket programming, communication protocols, and security mechanisms to provide a seamless user experience. Understanding the basics of client-server chat applications is essential for developers involved in networked application development, as they form the backbone of various collaborative communication systems. As technology evolves, chat applications continue to adapt, incorporating new features and technologies to enhance user interaction and connectivity.
 
+## PROGRAMS
+
+### client.py
+```python
+import socket
+
+def client_program():
+    host = '127.0.0.1'
+    port = 8000  
+
+    client_socket = socket.socket()
+    client_socket.connect((host, port))
+
+    while True:
+        message = input(" -> ")
+        client_socket.send(message.encode())
+
+        data = client_socket.recv(1024).decode()
+        print('Received from server:', data)
+
+    client_socket.close()
+
+if __name__ == '__main__':
+    client_program()
+
+```
+### server.py
+
+```python
+import socket
+
+def server_program():
+    host = '127.0.0.1'  # or socket.gethostname()
+    port = 8000  
+
+    server_socket = socket.socket()
+    server_socket.bind((host, port))
+    server_socket.listen(1)
+    print(f"Server listening on {host}:{port}")
+
+    conn, address = server_socket.accept()
+    print("Connection from:", address)
+
+    while True:
+        data = conn.recv(1024).decode()
+        if not data:
+            break
+        print("from connected user:", data)
+        message = input(" -> ")
+        conn.send(message.encode())
+
+    conn.close()
+
+if __name__ == '__main__':
+    server_program()
+
+```
+
+## OUTPUT
+### client.py 
+<img width="652" height="188" alt="image" src="https://github.com/user-attachments/assets/82b85679-13d6-43b1-8428-600e7adbfc9f" />
+
+### server.py
+
+<img width="652" height="188" alt="image" src="https://github.com/user-attachments/assets/6f54219a-fb52-41b1-adaf-9c6374631eb4" />
 
 ## Result:
 
 Thus the study on Client Server Chat Applications has been performed
-
